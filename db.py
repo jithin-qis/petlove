@@ -1009,3 +1009,17 @@ def get_last_message(from_id, to_id):
 	else:
 		return False
 	# return ['','','','','']
+
+data = {"hi": "hello welcome", "hello": "hai", "what is your name?,who are you?": "iam AI bot ", "how are you?": "iam good",
+        "what is the best common cat food?,what can cats eat?,what can cats eat besides cat food?": 'salmon,trout,chicken,fish,beef,eggs,blueberries',
+        'what should i feed my cat?': 'salmon,trout,chicken,fish,beef,eggs,blueberries',
+        "vaccinations for cat?": "FVRCP Also called “the feline distemper vaccine which protects against three feline viruses rhinotracheitis, calicivirus and panleukopenia",
+        "cat vaccination schedule?": "6 to 10 weeks old=FVRCP,11 to 14 weeks old=FVRCP and FeLv,15 weeks old=fvcp,felv ,rabies",
+        "diseases of cat?": "heartworm,rabies,ringworm,worms,respiratory infections,felv",
+        "symptoms of a sick cat": "vomiting,diarrhoea,foul smell,behavioral changes", "what is the best common dog food?,what shoul i feed my dog": "carrots,peanut butter,meat,fish,egg,bread,tomato,oatmeal,rice", "dog food?": "pedigree",
+        "vaccinations for dog": "parvovirus,coronavirus,rabies", "common vaccinations for dog": "parvovirus,coronavirus,rabies", "vaccination schedule of dog": "6 to 16 week=distemper,parvovirus,3 to 4 weeks=parainfluenza,9 weeks=lymedisease,1 year=rabies",
+        "common diseases of dog": "diabetes,kennel cough,heart worm,parvovirus,ringworm", "symptoms of sick dog": "vomiting,diabetes,diarrhoea,exessive thirst,urination,behavioral changes,red gums,runny eyes or nose,weight loss",
+
+        "common food of birds?": "plant leafs,nuts,fruits", "pigeon  food?": "Millet, cracked corn, wheat, milo, Nyjer, buckwheat, sunflower hearts", "dove food?": "Millet, cracked corn, wheat, milo, Nyjer, buckwheat, sunflower hearts", "humming bird food?": "plant nectar,sugar solution,small insects", "vaccination of bird?": "polymavirus",
+        "squirrel food": "any fruits,vegetables,nuts", "squirrel vaccination": "no vaccination"
+        }
