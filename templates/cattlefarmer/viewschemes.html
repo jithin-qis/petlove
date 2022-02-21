@@ -1,0 +1,25 @@
+{%include 'cattlefarmer/header.html' %}
+
+
+<table class="table">
+  
+  <th>Type of the Scheme</th>
+  <th>Scheme Name</th>
+  <th>Details</th>
+  
+  
+{% for s in scheme %}
+
+  <tr>
+         <td>{{s[0]}}</td>
+         <td>{{s[1]}}</td>
+         <td>{{s[2]}}</td>
+         
+
+
+  {% endfor %}
+  </table>
+
+{%include 'cattlefarmer/footer.html' %}
+  
+

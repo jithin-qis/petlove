@@ -1,0 +1,140 @@
+
+
+
+
+{%include 'cattlefarmer/header.html'%}
+<!-- //second header -->
+
+    <!-- banner -->
+    
+  <!-- //main -->
+
+  <div class="container">
+
+  <!-- register -->
+  <section class="logins py-5">
+    <div class="container py-xl-5 py-lg-3">
+      <div class="title-section mb-md-5 mb-4">
+        <h6 class="w3ls-title-sub">ADD</h6>
+        <h3 class="w3ls-title text-uppercase text-dark font-weight-bold">Farm Now</h3>
+      </div>
+      <div class="login px-sm-4 mx-auto mw-100 login-wrapper">
+
+
+<form method="POST" enctype="multipart/form-data" action="savefarmreg">
+
+          <div class="form-group">
+            <label>Farm Name</label>
+            <input type="text" class="form-control" pattern="[A-Za-z]+$" name="txtfname" placeholder="" required="">
+          </div>
+                                      
+         <div class="form-group">
+            <label for="sel1">State</label>
+          <select class="form-control" name="state" onchange="getState(this.value)" required="">
+          <option selected>--------SELECT--------</option>
+          {% for s in  state  %}
+          <option value={{s[0]}}>{{s[1]}}</option>
+          {% endfor %}
+          </select>
+          </div>
+          <div id="dis">
+          <div class="form-group">
+            <label for="sel1">District</label>
+
+          <select name="district" class="form-control" required="">
+          <option value="">------SELECT-----</option>
+          </select>
+        </div>
+      </div>
+         
+<div class="form-group">
+            <label>Place</label>
+            <input type="text" class="form-control" pattern="[A-Za-z]+$" name="txtplace" placeholder="" required="">
+          </div>
+
+           <br>
+ <div class="form-group">
+          <label>Photo of Farm</label>
+          <input class="form-control"  name="file" type="file" accept="image/*" onchange="loadFile(event)" required="">
+          <br>
+          <img style="max-width: 200px;max-height: 200px" id="output"/>
+          <script>
+           var loadFile = function(event) {
+                var reader = new FileReader();
+                reader.onload = function(){
+                 var output = document.getElementById('output');
+                  output.src = reader.result;
+               };
+                reader.readAsDataURL(event.target.files[0]);
+              };
+          </script>
+
+</div>
+
+                                       <div class="form-group">
+            <label>Year of Establishment</label>
+          <!--  <input size="16" type="text" value="" readonly>
+    <span class="add-on"><i class="icon-th"></i></span> -->
+    
+   <input  id="yor" type="date" name="txtyear" class="form-control"  required=""/>
+    <!-- <script>
+                    $('#datepicker').datepicker({
+                         uiLibrary: 'bootstrap4'
+                       });
+              </script> -->
+              <!-- <input id="datefield" type='date' min='1899-01-01' max='2000-13-13'></input> -->
+              <script type="text/javascript">
+                
+                   var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("yor").setAttribute("max", today);
+              </script>
+
+          </div>
+                                          <div class="form-group">
+            <label>Farm Regno</label>
+            <input type="text" class="form-control" name="txtfregnum" placeholder="" required="" maxlength="7">
+          </div>
+            
+
+                                        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" class="form-control" pattern="[0-9]{10}" maxlength="10" name="txtphn" placeholder="" required="">
+          </div>
+
+          
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="txtemail" placeholder="" required="">
+          </div>                                      
+          <button type="submit" class="btn submit mt-4">Register</button>
+          <button type="reset" class="btn submit mt-4 btn-danger">Cancel</button>
+          <p class="text-center mt-5">f
+            <a href="#">By clicking Register, I agree to your terms</a>
+          </p>
+        </form>
+      </div>
+
+  {%include 'cattlefarmer/footer.html' %}
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+  
+  function getState(state){
+   $.post('/getDistrict', {state:state}, function(response){ 
+      // alert("success");
+      $("#dis").html(response);
+});
+  }
+  
+</script>
+  <!-- //register -->

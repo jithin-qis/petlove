@@ -1,0 +1,110 @@
+{% include 'header.html' %}
+<div class="container">
+<style>
+/*body {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 20px;
+}*/
+
+.cont {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #17A589;
+  color: white;
+}
+
+.cont::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.cont img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.cont img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
+
+
+<div style="width: 800px;max-height: 500px;overflow-y: scroll;" id="msg">
+	
+
+</div>
+<br>
+<div style="width: 800px">
+  <textarea placeholder="Enter message here" class="form-control" type="text" name="message" id="message"></textarea>
+<br>
+
+<button style="float: right;" class="btn btn-primary"  type="button" onclick="send()">Send</button>
+</div>
+
+
+
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+		var a=[];
+ 	var b=[];
+ function send(){
+ 	var message=document.getElementById("message").value
+ 	console.log(message)
+ 
+ 	$.post('/send', {message:message}, function(response){ 
+     
+      // var a='<div class="row">'
+      //  a+='<div style="padding: 20px; background: #7777;margin: 10px;border-radius: 10px;"  class="col-md-4"> Hello</div>'
+      //   a+='<div style="padding: 20px; background: #7777;margin: 10px;border-radius: 10px;" class="col-md-4 offset-md-4"> Hello</div>'
+      //   a+='</div>'
+      console.log(response)
+      // if(response == '' || response.length == 1)
+
+      	// response="I don't know what you are asking about"
+   a.push('<div class="cont"><p>'+ message +'</p></div>')
+b.push('<div style="color:#FFFFF" class="cont darker"><p style="color:white">'+ response +'</p></div>')
+var msg=""
+for(var i=0;i<a.length;i++)
+{
+	msg+=a[i];
+	msg+=b[i]
+
+
+}
+      // var a=""
+      $("#msg").html(msg)
+      console.log(a)
+      document.getElementById("message").value=""
+});
+ }
+</script>
+<br>
+<br>
+{% include 'footer.html' %}

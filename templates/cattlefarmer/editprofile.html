@@ -1,0 +1,112 @@
+{%include 'cattlefarmer/header.html' %}
+<body onload="getState({{data[3]}},{{data[4]}})">
+<div class="login px-sm-4 mx-auto mw-100 login-wrapper">
+        <form class="login-wrapper" enctype="multipart/form-data" action="/saveuseredit" method="post" onsubmit="return checkcompare()">
+          
+                                        
+
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name="txtname" placeholder="" required="" value="{{data[0]}}">
+          </div>
+
+          <div class="form-group">
+            <label>House Name</label>
+            <input type="text" class="form-control" name="txthname" placeholder="" required="" value="{{data[2]}}">
+          </div>
+
+
+          <div class="form-group">
+            <label for="sel1">State</label>
+          <select class="form-control" name="state" onchange="getState(this.value,{{data[4]}})">
+          <option selected>--------SELECT--------</option>
+          {% for s in  state  %}
+          <option {% if data[3]|string == s[0]|string  %}  selected="selected" {% endif %} value={{s[0]}}>{{s[1]}}</option>
+          {% endfor %}
+          </select>
+          </div>
+          <div id="dis">
+          <div class="form-group">
+            <label for="sel1">District</label>
+
+          <select name="district" class="form-control">
+          <option selected>------SELECT-----</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+            <label>Place</label>
+            <input type="text" class="form-control" name="txtplace" placeholder="" required="" value="{{data[5]}}">
+          </div>
+
+          <br>
+
+          <div class="form-group">
+            <label>Pincode</label>
+            <input type="text" class="form-control" name="txtpincode" pattern="[0-9]{6}" maxlength="6" placeholder="" required="" value="{{data[6]}}">
+          </div>
+
+
+                                       <div class="form-group">
+            <label>DOB</label>
+          <!--  <input size="16" type="text" value="" readonly>
+    <span class="add-on"><i class="icon-th"></i></span> -->
+    
+   <input  id="datepicker" name="txtdob" class="form-control"  required="" value="{{data[7]}}">
+    <script>
+        $('#datepicker').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+    </script>
+
+            <!-- <input type="date" class="form-control" name="txtdate"  required=""> -->
+          </div>
+
+                                        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" class="form-control" name="txtphn" pattern="[0-9]{10}" maxlength="10" placeholder="" required="" value="{{data[8]}}">
+          </div>
+          <button type="submit" class="btn submit mt-4">Update</button>
+          <button type="reset" class="btn submit mt-4 btn-danger">Cancel</button>
+      </form>
+  </div>
+</body>
+
+
+{%include 'cattlefarmer/footer.html' %}
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+  
+   
+  function getState(state,selectedDistrict){
+   $.post('/getDistrict', {state:state,selectedDistrict:selectedDistrict}, function(response){ 
+      // alert("success");
+      $("#dis").html(response);
+});
+ }
+ var passcomapre
+   var msg=document.getElementById('msg')
+   msg.style["display"]="none"
+  function checkpass(){
+    var pass=document.getElementById('password').value
+    var repass=document.getElementById('repassword').value
+    var msg=document.getElementById('msg') 
+    msg.style["display"]="none"
+    if(repass!="" &&  pass!="")
+      if(repass==pass)
+      {
+        msg.style["display"]="none"
+        passcomapre= true
+      }
+      else
+      {
+        passcomapre= false
+        msg.style["display"]="block"
+      }
+    
+  }
+  function checkcompare(){
+    return passcomapre
+  }
+</script>

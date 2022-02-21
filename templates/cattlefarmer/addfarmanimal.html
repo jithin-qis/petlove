@@ -1,0 +1,109 @@
+
+
+{%include 'cattlefarmer/header.html' %}
+
+<div class="container">         
+<form method="POST" enctype="multipart/form-data" action="/savefarmanimal" onsubmit="return checkcompare()">
+
+          
+              
+
+            <div class="form-group">
+            <label for="sel1">Species</label>
+          <select class="form-control" name="species" onchange="getSpecies(this.value)" required="">
+          <option selected>--------SELECT--------</option>
+          {% for s in  species  %}
+          <option value={{s[0]}}>{{s[1]}}</option>
+          {% endfor %}
+          </select>
+          </div>
+          <div id="brd">
+          <div class="form-group">
+            <label for="sel1">Breed</label>
+
+          <select name="breed" class="form-control" required="">
+          <option value="">------SELECT-----</option>
+          </select>
+        </div>
+      </div>
+
+      
+
+     
+          <br>
+
+          <div class="form-group">
+            <label>Number of animals</label>
+            <input type="Number" min="0"  class="form-control"  name="txtno" placeholder="" required="">
+          </div>
+
+          <div class="form-group">
+            <label>Date of buy</label>
+            <input id="yor"  type="date" class="form-control" name="txtdate"  placeholder="" required="">
+             <script type="text/javascript">
+                
+                   var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("yor").setAttribute("max", today);
+              </script>
+          </div>
+
+
+                                      
+          <button type="submit" class="btn submit mt-4">Save</button>
+          <button type="reset" class="btn submit mt-4 btn-danger">Cancel</button>
+        
+         
+
+
+
+</div>   
+</form>
+</div>
+
+{%include 'cattlefarmer/footer.html' %}
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+  
+  function getSpecies(species){
+   $.post('/getBreed', {species:species}, function(response){ 
+      // alert("success");
+      $("#brd").html(response);
+});
+ }
+   var passcomapre
+   var msg=document.getElementById('msg')
+   msg.style["display"]="none"
+  function checkpass(){
+    var pass=document.getElementById('password').value
+    var repass=document.getElementById('repassword').value
+    var msg=document.getElementById('msg') 
+    msg.style["display"]="none"
+    if(repass!="" &&  pass!="")
+      if(repass==pass)
+      {
+        msg.style["display"]="none"
+        passcomapre= true
+      }
+      else
+      {
+        passcomapre= false
+        msg.style["display"]="block"
+      }
+    
+  }
+  function checkcompare(){
+    return passcomapre
+  }
+</script>
